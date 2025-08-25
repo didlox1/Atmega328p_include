@@ -4,8 +4,13 @@
  * Created: 25.08.2025 16:10:08
  * Author : didlox1
  */ 
-#define F_CPU 16000000  //16Mhz Clock freq for atmega328p MCU. You can comment it to make it 8Mhz default defined in delay.h header file
-#define SLAVE_ADDR 0x27
+#ifndef F_CPU
+	#define F_CPU 16000000  //16Mhz Clock freq for atmega328p MCU. You can comment it to make it 8Mhz default defined in delay.h header file
+#endif
+
+#ifndef SLAVE_ADDR
+	#define SLAVE_ADDR 0x27
+#endif
 
 #include <avr/io.h>
 #include <util/twi.h>
@@ -30,6 +35,9 @@ void TWI_Write(uint8_t data){
 	while (!(TWCR & (1<<TWINT)));				 //WAIT
 }
 
+/*
+Example function of using TWI.c library
+
 int main(void)
 {
 	uint8_t data = 0x00;						 //Bits that will be sent through TWI interface
@@ -39,3 +47,4 @@ int main(void)
 	TWI_Stop();
 }
 
+*/
